@@ -1,3 +1,7 @@
+/*
+MADE BY ADRIAN COPTA | FAF-223
+*/
+
 boolean isDay = true;
 
 void setup() {
