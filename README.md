@@ -1,2 +1,2 @@
 # Labs_CG
-University labslaboratory works at Computer Graphics
+University laboratory works at Computer Graphics
