@@ -1,3 +1,7 @@
+/*
+Adrian Copta | FAF-223
+*/
+
 float xOff = 0.0;
 float yOff = 0.0;
 float increment = 0.02;

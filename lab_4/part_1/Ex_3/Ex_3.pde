@@ -1,6 +1,5 @@
 /*
 Adrian Copta | FAF-223
-Varianta 1
 Exercise 1.3
 */
 
