@@ -2,39 +2,64 @@
 Adrian Copta | FAF-223
 */
 
-float posX, posY;  // Position
-float velX, velY;  // Velocity
-float accX, accY;  // Acceleration
+PImage water; // Background image of water
+
+Animal[] animals; // Array of animal objects
+int numAnimals = 15; // Number of fish
 
 void setup() {
-  size(800, 600);
-  posX = width / 2;
-  posY = height / 2;
+  size(400, 400);
+  animals = new Animal[numAnimals];
+  
+  for (int i = 0; i < numAnimals; i++) {
+    // Initialize fish at random positions
+    animals[i] = new Animal(random(width), random(height));
+  }
+
+
+// Load the background image
+  water = loadImage("water.jpg"); 
+  water.resize(width, height);
+  
 }
 
 void draw() {
-  background(220);
-
-  // Apply random acceleration
-  accX = random(-1, 1);
-  accY = random(-1, 1);
-
-  // Update velocity based on acceleration
-  velX += accX;
-  velY += accY;
-
-  // Limit the bunny's speed
-  float maxSpeed = 5;
-  float speed = dist(0, 0, velX, velY);
-  if (speed > maxSpeed) {
-    velX = (velX / speed) * maxSpeed;
-    velY = (velY / speed) * maxSpeed;
+  background(water);
+  
+  // Array of fish objects using Perlin noise
+  for (int i = 0; i < numAnimals; i++) {
+    animals[i].move();
+    animals[i].display();
   }
+}
 
-  // Update position based on velocity
-  posX += velX;
-  posY += velY;
-
-  // Draw the bunny
-  ellipse(posX, posY, 20, 20);
+class Animal {
+  float x, y;
+  
+  Animal(float x, float y) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  void move() {
+    // Move the fish object upwards
+    y -= 1;
+    
+    // Checking if it has reached the top, then reset its position to the bottom
+    if (y < 0) {
+      y = height;
+    }
+    
+    // Applying Perlin noise to the x-coordinate for random horizontal movement
+    x += noise(y * 0.01) * 2 - 1;
+  }
+  
+  void display() {
+    // Createing the fish using 2D primitives
+      fill(random(255), random(255), random(255));
+    triangle(x, y, x + 20, y, x + 10, y - 30);
+    rect(x + 5, y - 30, 10, 30, 10, 10, 0, 0);
+    ellipse(x + 10, y - 45, 10, 15);
+    ellipse(x + 10, y - 25, 15, 35);
+  }
 }

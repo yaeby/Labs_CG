@@ -1,5 +1,5 @@
 /*
-ADRIAN COPTA 
+ADRIAN COPTA | FAF-223
 */
 
 PImage sky;
@@ -41,7 +41,6 @@ void update() {
   
 void display() {
   stroke(0);
-  //fill(0, 0, 225);
   pushMatrix();
   translate(location.x, location.y);
   
